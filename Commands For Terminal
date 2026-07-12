@@ -1,0 +1,41 @@
+# List Available Curves:
+openssl ecparam -list_curves
+
+# Choose a Curve:
+secp256k1
+
+# Generate Private Key:
+openssl ecparam -name prime256v1 -genkey -noout -out private.pem
+
+# View Private Key:
+openssl ec -in private.pem -text -noout
+
+# Extract Public Key:
+openssl ec -in private.pem -pubout -out public.pem
+
+# View Public Key:
+openssl pkey -pubin -in public.pem -text -noout
+
+# Create Message :
+echo "Hello ECC" > message.txt
+
+# Sign Message:
+openssl dgst -sha256 -sign private.pem -out signature.bin message.txt
+
+# View Signature:
+openssl dgst -sha256 -verify public.pem -signature signature.bin message.txt
+
+# Generate Second User's Key Pair:
+openssl ecparam -name prime256v1 -genkey -noout -out bob_private.pem
+openssl ec -in bob_private.pem -pubout -out bob_public.pem
+
+# Compute Shared Secret(ALICE):
+openssl pkeyutl -derive -inkey bob_private -peerkey public.pem -out secret_bob.bin
+
+# Compute Shared Secret (BOB):
+openssl pkeyutl -derive -inkey bob_private.pem -peerkey public.pem -out secret_bob.bin
+
+# Compute Shared Secrets:
+fc \b secret_alice.bin secret_bob.bin
+
+# Exit the Terminal 
