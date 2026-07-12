@@ -1,0 +1,92 @@
+## Cryptographic Workflow
+
+```text
+                           START
+                             │
+                             ▼
+                 Launch ECC Security System
+                             │
+                             ▼
+                Select an Option from Menu
+                             │
+                             ▼
+        Generate Alice ECC Private Key (.pem)
+                             │
+                             ▼
+         Generate Bob ECC Private Key (.pem)
+                             │
+                             ▼
+       Extract Alice Public Key (.pem)
+                             │
+                             ▼
+        Extract Bob Public Key (.pem)
+                             │
+                             ▼
+     Display & Verify Generated Key Information
+                             │
+                             ▼
+      Alice Generates Shared Secret (ECDH)
+                             │
+                             ▼
+       Bob Generates Shared Secret (ECDH)
+                             │
+                             ▼
+     Compare Both Shared Secret Files (fc /b)
+                             │
+                  ┌──────────┴──────────┐
+                  │                     │
+                  ▼                     ▼
+             Match Found            No Match
+                  │                     │
+                  ▼                     ▼
+       Secure Channel Ready      Repeat Key Exchange
+                  │
+                  ▼
+          Select File to Protect
+                  │
+                  ▼
+      Generate SHA-256 Hash of File
+                  │
+                  ▼
+   Create Digital Signature (ECDSA)
+                  │
+                  ▼
+ Verify Digital Signature Using Public Key
+                  │
+          ┌───────┴────────┐
+          │                │
+          ▼                ▼
+   Signature Valid    Signature Invalid
+          │                │
+          ▼                ▼
+     Encrypt File      Stop Process
+          │
+          ▼
+      Decrypt File
+          │
+          ▼
+    Verify File Integrity
+          │
+          ▼
+ Delete Temporary/Generated Files (Optional)
+          │
+          ▼
+             Exit Application
+```
+
+### Workflow Summary
+
+1. Launch the ECC Security System.
+2. Generate ECC private keys for Alice and Bob.
+3. Extract their public keys.
+4. Display and verify the generated keys.
+5. Perform ECDH key exchange from both sides.
+6. Compare the generated shared secrets to confirm successful key exchange.
+7. Generate a SHA-256 hash of the file.
+8. Digitally sign the file using Alice's private key.
+9. Verify the signature using Alice's public key.
+10. Encrypt the file.
+11. Decrypt the encrypted file.
+12. Verify the decrypted file's integrity.
+13. Optionally remove temporary/generated files.
+14. Exit the application.
