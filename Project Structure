@@ -1,0 +1,41 @@
+Project Structure
+ECC-Security-System/
+│
+├── ecc.bat                     # Main menu-driven application
+├── README.md                   # Project documentation
+├── LICENSE                     # MIT License
+│
+├── keys/
+│   ├── alice_private.pem
+│   ├── alice_public.pem
+│   ├── bob_private.pem
+│   └── bob_public.pem
+│
+├── shared_secrets/
+│   ├── secret_alice.bin
+│   └── secret_bob.bin
+│
+├── signatures/
+│   └── signature.bin
+│
+├── hashes/
+│   └── file_hash.txt
+│
+├── encrypted/
+│   └── encrypted_file.enc
+│
+├── decrypted/
+│   └── decrypted_file.txt
+│
+├── sample_files/
+│   └── sample.txt
+│
+├── temp/
+│   └── temporary_files
+│
+└── screenshots/
+    ├── menu.png
+    ├── key_generation.png
+    ├── shared_secret.png
+    ├── signature_verification.png
+    └── encryption_decryption.png
